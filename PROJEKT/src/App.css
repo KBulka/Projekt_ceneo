@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   color: rgba(255, 255, 255);
   background-color: #242424;
 }
@@ -21,9 +21,10 @@ body {
   width: 100vw;
   display: flex;
   justify-content: center;
+  padding: 1rem;
 }
 
-.searchBarContainer{
+.container{
   width: clamp(500px, 55%, 1200px);
   display: flex;
   flex-direction: column;
@@ -40,6 +41,10 @@ body {
   font-size: 20px;
   border-radius: 6px;
   margin: 0 25%;
+
+  &:focus{
+    outline: 1px solid #FF8333;
+  }
 }
 
 #searchBtn{
@@ -52,6 +57,8 @@ body {
   cursor: pointer;
 
   &:hover{
-    background-color: #fff;
+    background-color: transparent;
+    outline: 1px solid #FF8333;
+    color: #FF8333;
   }
 }
