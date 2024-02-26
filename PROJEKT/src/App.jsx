@@ -1,10 +1,22 @@
 import './App.css'
 
+
 function App() {
 
+    fetch('http://localhost:3000/')
+    .then(response => response.json())
+    .then(data => {
+
+    console.log(data);
+    })
+    .catch(error => {
+
+    console.error('Error:', error);
+    });
+
+
     function makeLink() {
-        const inputText = document.getElementById('searchBar').value;
-        return "www.ceneo.pl/;szukaj-" + inputText
+        console.log("test");
     }
 
     return(

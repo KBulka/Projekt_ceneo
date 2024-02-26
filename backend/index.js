@@ -1,10 +1,10 @@
-const axios = require('axios');
-const {XMLParser} = require('fast-xml-parser'); 
-const {readFileSync} = require('fs');
 const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
 const { JSDOM } = require('jsdom');
 
 const app = express();
+app.use(cors());
 
 app.get('/', async (req, res) => {
     res.send(await getProducts());
@@ -25,9 +25,6 @@ const getProducts = async () => {
     }
     return products;
 }
-(async () => {
-    console.log(await getProducts());
-})();
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
