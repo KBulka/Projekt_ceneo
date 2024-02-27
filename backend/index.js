@@ -25,28 +25,24 @@ const getProducts = async (searchInput) => {
     const products = [];
     for (let i = 0; i < productCount; i++) {
         const cena = elements[i].getElementsByClassName('price')[0];
-        let otherParameters = [];
-        let otherParametersElements = elements[i].getElementsByClassName('prod-params')[0].getElementsByTagName('li');
-        for(let j=0; j < otherParametersElements.length; j++)
+        if(elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('img')[0].getAttribute('data-original') === null)
         {
-            let parameterKey = otherParametersElements[j].innerHTML;
-            let firstNewLine = parameterKey.indexOf('\n');
-            parameterKey=parameterKey   .substring(firstNewLine+1)
-                                        .substring(0,parameterKey.indexOf(':')-1);
-
-            otherParameters.push({
-                key: parameterKey,
-                value: otherParametersElements[j].getElementsByTagName('strong')[0].innerHTML
-            });
+            products.push({
+                name: elements[i].getElementsByClassName('cat-prod-row__name')[0].getElementsByTagName('span')[0].innerHTML,
+                price: cena.getElementsByClassName('value')[0].innerHTML + cena.getElementsByClassName('penny')[0].innerHTML,
+                imgURL: elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('img')[0].getAttribute('src'),
+                productURL: 'https://www.ceneo.pl/'+elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('a')[0].getAttribute('href'),
+                category: elements[i].getElementsByClassName('cat-prod-row__category')[0].getElementsByTagName('a')[0].innerHTML
+            })
+        }else{
+            products.push({
+                name: elements[i].getElementsByClassName('cat-prod-row__name')[0].getElementsByTagName('span')[0].innerHTML,
+                price: cena.getElementsByClassName('value')[0].innerHTML + cena.getElementsByClassName('penny')[0].innerHTML,
+                imgURL: elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('img')[0].getAttribute('data-original'),
+                productURL: 'https://www.ceneo.pl/'+elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('a')[0].getAttribute('href'),
+                category: elements[i].getElementsByClassName('cat-prod-row__category')[0].getElementsByTagName('a')[0].innerHTML
+            })
         }
-        products.push({
-            name: elements[i].getElementsByClassName('cat-prod-row__name')[0].getElementsByTagName('span')[0].innerHTML,
-            price: cena.getElementsByClassName('value')[0].innerHTML + cena.getElementsByClassName('penny')[0].innerHTML, 
-            imgURL: elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('img')[0].getAttribute('data-original'),
-            productURL: 'https://www.ceneo.pl/'+elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('a')[0].getAttribute('href'), 
-            category: elements[i].getElementsByClassName('cat-prod-row__category')[0].getElementsByTagName('a')[0].innerHTML,
-            other: otherParameters
-        });
     }
     return products;
 }
