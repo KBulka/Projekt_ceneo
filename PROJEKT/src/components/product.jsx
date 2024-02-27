@@ -1,17 +1,13 @@
-import DataGrid from "./datagrid";
-
-function Product({ name, price, productURL, other, imgURL, category }) {
+function Product({ name, price, productURL, imgURL, category }) {
     return (
-        <div className='product'>
-            <a href={productURL}>
-                <img src={imgURL} alt="" />
+        <a className='product' href={productURL} target="_blank">
+            <img src={imgURL} alt="Zdjęcie produktu" />
+            <div className="productInfo">
                 <h2>{name}</h2>
-            </a>
-            <p>Price: {price}</p>
-            <p>Category: {category}</p>
-            <DataGrid arr={other} />
-            <hr />
-        </div>
+                <p>Kategoria: {category}</p>
+                <p><b>{price} zł</b></p>
+            </div>
+        </a>
     );
 }
 

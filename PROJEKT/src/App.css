@@ -21,7 +21,7 @@ body {
   width: 100vw;
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .container{
@@ -41,6 +41,7 @@ body {
   font-size: 20px;
   border-radius: 6px;
   margin: 0 25%;
+  text-transform: capitalize;
 
   &:focus{
     outline: 1px solid #FF8333;
@@ -60,5 +61,39 @@ body {
     background-color: transparent;
     outline: 1px solid #FF8333;
     color: #FF8333;
+  }
+}
+
+.products{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.product{
+  display: flex;
+  color: #fff;
+  text-decoration: none;
+  gap: 1rem;
+  &:visited .productInfo h2
+  {
+    color: #FF8333;
+  }
+  img{
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    max-width: 200px;
+  }
+  .productInfo{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+    justify-content: space-around;
+    b{
+      color: #FF8333;
+      font-size: 24px;
+    }
   }
 }
