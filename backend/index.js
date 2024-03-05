@@ -3,6 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { getProducts } = require('./getProducts.js');
 const { getProductsCeneo } = require('./getProductsCeneo'); 
+const { updateAllSearches } = require('./updateAllSearches');
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -20,3 +22,9 @@ app.post('/getProductsCeneo', async (req, res) => {
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
+
+//update all products every 10 minutes
+setInterval(() => {
+    console.log('updating all searches');
+    updateAllSearches();
+}, 1000*10*60);
