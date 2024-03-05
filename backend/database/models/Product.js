@@ -24,10 +24,6 @@ Product.init({
         type: DataTypes.STRING,
         allowNull: true
     },
-    other: {
-        type: DataTypes.JSON,
-        allowNull: true
-    }
 }, { 
     sequelize, 
     modelName: 'product' 
