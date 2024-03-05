@@ -1,9 +1,9 @@
 const axios = require('axios');
 const { JSDOM } = require('jsdom');
-const { Op } = require('sequelize');
 const Product = require('./database/models/Product.js');
 const SearchInput = require('./database/models/SearchInput.js');
 const { getProducts } = require('./getProducts.js');
+
 const getProductsCeneo = async (searchInput) => {
     //check if the searchInput is already in the database
     const searchInputFromDB = await SearchInput.findOne({
@@ -29,7 +29,13 @@ const getProductsCeneo = async (searchInput) => {
             elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('img')[0].getAttribute('data-original');
         const price = Number((cena.getElementsByClassName('value')[0].innerHTML + cena.getElementsByClassName('penny')[0].innerHTML).replace(',', '.').replace(' ', ''));
         const productURL = 'https://www.ceneo.pl/' + elements[i].getElementsByClassName('cat-prod-row__foto')[0].getElementsByTagName('a')[0].getAttribute('href');
-        const category = elements[i].getElementsByClassName('cat-prod-row__category')[0].getElementsByTagName('a')[0].innerHTML;
+        //if category is not available, set it to 'brak'
+        const category = 'brak';
+        try {
+            const category = elements[i].getElementsByClassName('cat-prod-row__category')[0].getElementsByTagName('a')[0].innerHTML;
+        } catch (error) {
+            console.log('Category not found');
+        }
         const name = elements[i].getElementsByClassName('cat-prod-row__name')[0].getElementsByTagName('span')[0].innerHTML;
         products.push({
             name: name,
@@ -39,7 +45,6 @@ const getProductsCeneo = async (searchInput) => {
             category: category
         });
     }
-    // return products;
 
     //check if the product is already in the database
     for (let i = 0; i < productCount; i++) {
