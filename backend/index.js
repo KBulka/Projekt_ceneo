@@ -23,8 +23,8 @@ app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
-//update all products every 10 minutes
-setInterval(() => {
-    console.log('updating all searches');
-    updateAllSearches();
-}, 1000*10*60);
+// //update all products every 10 minutes
+// setInterval(() => {
+//     console.log('updating all searches');
+//     updateAllSearches();
+// }, 1000*10*60);

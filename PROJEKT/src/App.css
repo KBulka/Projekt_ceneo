@@ -1,7 +1,7 @@
 :root {
   font-family: Inter, Arial, sans-serif;
   color: rgba(255, 255, 255);
-  background-color: #242424;
+  background-color: #292929;
 }
 
 *{
@@ -50,9 +50,9 @@ form{
     border-radius: 6px;
     margin: 0 25%;
     text-transform: capitalize;
-
+/* ffa31a */
     &:focus{
-      outline: 3px solid #FF8333;
+      outline: 3px solid #ffa31a;
     }
     @media screen and (max-width: 600px){
       width: 100%;
@@ -65,15 +65,15 @@ form{
     font-size: 20px;
     padding: 10px 2rem;
     margin: 0 25% 2rem 25%;
-    background-color: #FF8333;
+    background-color: #ffa31a;
     border: none;
     border-radius: 6px;
     cursor: pointer;
 
     &:hover{
       background-color: transparent;
-      outline: 1px solid #FF8333;
-      color: #FF8333;
+      outline: 1px solid #ffa31a;
+      color: #ffa31a;
     }
 
     @media screen and (max-width: 600px){
@@ -99,7 +99,7 @@ form{
   }
   &:visited .productInfo h2
   {
-    color: #FF8333;
+    color: #ffa31a;
   }
   img{
     min-height: 200px;
@@ -124,7 +124,7 @@ form{
       font-size: 1.2rem;
     }
     b{
-      color: #FF8333;
+      color: #ffa31a;
       font-size: 28px;
     }
   }
@@ -145,7 +145,7 @@ form{
     width: 100%;
     padding: 1rem 8px;
     font-size: 18px;
-    background-color: #FF8333;
+    background-color: #ffa31a;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -156,13 +156,13 @@ form{
 
     &:hover{
       background-color: transparent;
-      outline: 1px solid #FF8333;
-      color: #FF8333;
+      outline: 1px solid #ffa31a;
+      color: #ffa31a;
     }
     &.active{
       background-color: transparent;
-      outline: 1px solid #FF8333;
-      color: #FF8333;
+      outline: 1px solid #ffa31a;
+      color: #ffa31a;
     }
   }
 }
