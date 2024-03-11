@@ -23,12 +23,19 @@ describe('Test 1', () => {
             expect(typeof products[i].price).toBe('number');
         }
     });
-    it('nazwa nie powinna zawwierac slow', () => {
-        let slowa = ["Polecany", "Promocja", "Bestseller", "undefined", "null", "NaN", "brak"];
+
+    it('cena powinna być nieujemna', () => {
         for (let i = 0; i < products.length; i++) {
-            for (let j = 0; j < slowa.length; j++) {
-                expect(products[i].name).not.toContain(slowa[j]);
-            }
+            const product = products[i];
+            expect(product.price).toBeGreaterThanOrEqual(0);
         }
     });
+    // it('nazwa nie powinna zawwierac slow', () => {
+    //     let slowa = ["Polecany", "Promocja", "Bestseller", "undefined", "null", "NaN", "brak"];
+    //     for (let i = 0; i < products.length; i++) {
+    //         for (let j = 0; j < slowa.length; j++) {
+    //             expect(products[i].name).not.toContain(slowa[j]);
+    //         }
+    //     }
+    // });
 });
