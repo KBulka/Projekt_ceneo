@@ -7,6 +7,11 @@ SearchInput.init({
     searchInput: {
         type: DataTypes.STRING,
         allowNull: false
+    }, 
+    page: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
     }
 },{
     sequelize,
@@ -14,6 +19,6 @@ SearchInput.init({
 
 });
 
-SearchInput.sync();
+SearchInput.sync({alter:true});
 
 module.exports = SearchInput;

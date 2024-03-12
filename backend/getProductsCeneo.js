@@ -9,7 +9,7 @@ const getProductsCeneo = async (searchInput) => {
     //check if the searchInput is already in the database
     const searchInputFromDB = await SearchInput.findOne({
         where: {
-            searchInput: searchInput
+            searchInput: searchInput,
         }
     });
     if (searchInputFromDB === null) {
@@ -17,8 +17,14 @@ const getProductsCeneo = async (searchInput) => {
             searchInput: searchInput
         });
     }
-    
-    const response = await axios.get(`https://www.ceneo.pl/szukaj-${searchInput}`);
+    else
+    {
+        await searchInputFromDB.increment('page');
+        const page = searchInputFromDB.page;
+        console.log('Page: ' + page);
+    }
+
+    const response = await axios.get(`https://www.ceneo.pl/szukaj-${searchInput};0020-30-0-0-${searchInputFromDB.page}.htm`);
     const dom = new JSDOM(response.data);
 
     const elements = dom.window.document.getElementsByClassName('cat-prod-row');
