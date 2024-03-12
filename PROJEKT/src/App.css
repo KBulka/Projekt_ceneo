@@ -15,6 +15,7 @@ body {
   width: 100vw;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 #root{
@@ -37,7 +38,7 @@ form{
   }
 
   label{
-    font-size: 3rem;
+    font-size: 3.5rem;
 
     @media screen and (max-width: 600px){
       font-size: 2.8rem;
@@ -48,9 +49,8 @@ form{
     padding: 8px 12px;
     font-size: 20px;
     border-radius: 6px;
-    margin: 0 25%;
     text-transform: capitalize;
-
+    margin: 0 25%;
     &:focus{
       outline: 3px solid #FF8333;
     }
@@ -64,7 +64,7 @@ form{
   #searchBtn{
     font-size: 20px;
     padding: 10px 2rem;
-    margin: 0 25% 2rem 25%;
+    margin: 0 25% 2rem;
     background-color: #FF8333;
     border: none;
     border-radius: 6px;
