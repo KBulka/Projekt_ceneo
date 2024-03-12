@@ -1,5 +1,6 @@
 const sequelize = require('../database.js').sequelize;
 const { DataTypes, Model } = require('sequelize');
+const withCache = require('../withCache').withCache;
 
 class SearchInput extends Model {}
 
