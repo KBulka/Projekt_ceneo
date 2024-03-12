@@ -13,7 +13,11 @@ function catProwRodToProduct(catProdRow) {
     } catch (error) {
         console.log('Category not found');
     }
-    const name = catProdRow.getElementsByClassName('cat-prod-row__name')[0].getElementsByTagName('span')[0].innerHTML;
+    // const name = catProdRow.getElementsByClassName('cat-prod-row__name')[0].getElementsByTagName('span')[0].innerHTML;
+    const nameElement = catProdRow.getElementsByClassName('cat-prod-row__name')[0];
+    const name = nameElement.getElementsByTagName('span')[0].classList.contains('recommended-label') ?
+        nameElement.getElementsByTagName('span')[1].innerHTML :
+        nameElement.getElementsByTagName('span')[0].innerHTML;
     return ({
         name: name,
         price: price,
