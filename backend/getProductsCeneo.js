@@ -1,6 +1,5 @@
 const axios = require('axios');
 const { JSDOM } = require('jsdom');
-const Product = require('./database/models/Product.js');
 const SearchInput = require('./database/models/SearchInput.js');
 const { getProducts } = require('./getProducts.js');
 const {addProductsToDb} = require('./addProductsToDb.js');
@@ -18,13 +17,12 @@ const getProductsCeneo = async (searchInput) => {
             searchInput: searchInput
         });
     }
-
+    
     const response = await axios.get(`https://www.ceneo.pl/szukaj-${searchInput}`);
     const dom = new JSDOM(response.data);
 
     const elements = dom.window.document.getElementsByClassName('cat-prod-row');
-    const products = catProdRowsToArray(elements)
-
+    const products = await catProdRowsToArray(elements)
     await addProductsToDb(products);
 
     return await getProducts(searchInput);
