@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const { getProducts } = require('./getProducts.js');
 const { getProductsCeneo } = require('./getProductsCeneo'); 
 const { updateAllSearches } = require('./updateAllSearches');
+const {checkSearchInput} = require('./checkSearchInput');
 
 const app = express();
 app.use(cors());
@@ -11,11 +12,21 @@ app.use(bodyParser.json());
 
 app.post('/', async (req, res) => {
     const searchInput = req.body.searchInput;
+    if(checkSearchInput(searchInput) === false)
+    {
+        res.send('Search input is too short');
+        return;
+    }
     res.send(await getProducts(searchInput));
 });
 
 app.post('/getProductsCeneo', async (req, res) => {
     const searchInput = req.body.searchInput;
+    if(checkSearchInput(searchInput) === false)
+    {
+        res.send('Search input is too short');
+        return;
+    }
     res.send(await getProductsCeneo(searchInput));
 });
 
