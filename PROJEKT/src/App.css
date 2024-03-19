@@ -47,7 +47,7 @@ form {
 
   #searchBar {
     padding: 8px 12px;
-    font-size: 20px;
+    font-size: 32px;
     border-radius: 6px;
     text-transform: capitalize;
 
@@ -56,15 +56,15 @@ form {
     }
     @media screen and (max-width: 600px) {
       width: 100%;
+      font-size: 20px;
       margin: 0;
       padding: 8px 12px;
     }
   }
 
-  #searchBtn {
-    font-size: 20px;
+  .searchBtn {
+    font-size: 24px;
     padding: 10px 2rem;
-    margin: 0 25% 2rem 25%;
     background-color: #ff8333;
     border: none;
     border-radius: 6px;
@@ -75,10 +75,8 @@ form {
       outline: 1px solid #ff8333;
       color: #ff8333;
     }
-
     @media screen and (max-width: 600px) {
-      width: 100%;
-      margin: 0 0 1rem 0;
+      font-size: 20px;
     }
   }
 }
@@ -96,6 +94,7 @@ form {
   gap: 1rem;
   @media screen and (max-width: 600px) {
     padding: 0 1rem;
+    align-items: center;
   }
   &:visited .productInfo h2 {
     color: #ff8333;
@@ -106,10 +105,10 @@ form {
     min-width: 200px;
     max-width: 200px;
     @media screen and (max-width: 600px) {
-      min-height: 180px;
-      max-height: 180px;
-      min-width: 180px;
-      max-width: 180px;
+      min-height: 160px;
+      max-height: 160px;
+      min-width: 160px;
+      max-width: 160px;
     }
   }
   .productInfo {
@@ -121,6 +120,7 @@ form {
 
     h2 {
       font-size: 1.2rem;
+      text-wrap: balance;
     }
     b {
       color: #ff8333;
