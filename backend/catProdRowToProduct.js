@@ -11,7 +11,7 @@ function catProwRodToProduct(catProdRow) {
     try {
         category = catProdRow.getElementsByClassName('cat-prod-row__category')[0].getElementsByTagName('a')[0].innerHTML;
     } catch (error) {
-        console.log('Category not found');
+        // console.log('Category not found');
     }
     // const name = catProdRow.getElementsByClassName('cat-prod-row__name')[0].getElementsByTagName('span')[0].innerHTML;
     const nameElement = catProdRow.getElementsByClassName('cat-prod-row__name')[0];

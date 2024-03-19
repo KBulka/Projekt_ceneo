@@ -1,6 +1,5 @@
 const axios = require('axios');
 const { JSDOM } = require('jsdom');
-const Product = require('./database/models/Product.js');
 const SearchInput = require('./database/models/SearchInput.js');
 const { getProducts } = require('./getProducts.js');
 const {addProductsToDb} = require('./addProductsToDb.js');
@@ -10,7 +9,7 @@ const getProductsCeneo = async (searchInput) => {
     //check if the searchInput is already in the database
     const searchInputFromDB = await SearchInput.findOne({
         where: {
-            searchInput: searchInput
+            searchInput: searchInput,
         }
     });
     if (searchInputFromDB === null) {
@@ -18,13 +17,18 @@ const getProductsCeneo = async (searchInput) => {
             searchInput: searchInput
         });
     }
+    else
+    {
+        await searchInputFromDB.increment('page');
+        const page = searchInputFromDB.page;
+        console.log('Page: ' + page);
+    }
 
-    const response = await axios.get(`https://www.ceneo.pl/szukaj-${searchInput}`);
+    const response = await axios.get(`https://www.ceneo.pl/szukaj-${searchInput};0020-30-0-0-${searchInputFromDB.page}.htm`);
     const dom = new JSDOM(response.data);
 
     const elements = dom.window.document.getElementsByClassName('cat-prod-row');
-    const products = catProdRowsToArray(elements)
-
+    const products = await catProdRowsToArray(elements)
     await addProductsToDb(products);
 
     return await getProducts(searchInput);

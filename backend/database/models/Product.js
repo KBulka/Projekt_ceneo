@@ -1,5 +1,6 @@
 const sequelize = require('../database.js').sequelize;
 const { DataTypes, Model } = require('sequelize');
+const withCache = require('../withCache').withCache;
 
 class Product extends Model {}
 
@@ -31,4 +32,4 @@ Product.init({
 
 Product.sync();
 
-module.exports = Product;
+module.exports = withCache(Product);
