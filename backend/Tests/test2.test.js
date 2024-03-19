@@ -1,16 +1,31 @@
-// sprawdza czy w polu wyszukiwania jest jakaś wartość
+const fs = require('fs');
+const { JSDOM } = require('jsdom');
+const { catProdRowsToArray } = require('../catProdRowsToArray');
 
-const request = require('supertest');
-const app = require('../index');
 
-describe('testowanie backendu', () => {
-    it('Powinno zwrócić błąd przy braku danych w zapytaniu', async () => {
-        const response = await request(app)
-            .post('/')
-            .send({});
+describe('Test 2', () => {
+    let products;
 
-        expect(response.status).toBe(400);
-        expect(response.body).toHaveProperty('error');
-        expect(response.body.error).toBe('Brak danych w zapytaniu');
+    beforeEach(async () => { // <-- inicjalizuje dane przed wykonaniem testów
+        const html = fs.readFileSync('./Tests/webstie_to_test/mysz.html', 'utf8');
+        const dom = new JSDOM(html);
+        const elements = dom.window.document.getElementsByClassName('cat-prod-row');
+        products = await catProdRowsToArray(elements);
+    });
+
+    it('Każdy produkt powinien mieć imgURL', () => {
+        for (let i = 0; i < products.length; i++) {
+            expect(products[i].imgURL).toBeDefined();
+            expect(products[i].imgURL).not.toBeNull();
+            expect(products[i].imgURL).not.toBe('');
+        }
+    });
+
+    it('Każdy produkt powinien mieć productURL', () => {
+        for (let i = 0; i < products.length; i++) {
+            expect(products[i].productURL).toBeDefined();
+            expect(products[i].productURL).not.toBeNull();
+            expect(products[i].productURL).not.toBe('');
+        }
     });
 });

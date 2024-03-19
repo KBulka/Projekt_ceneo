@@ -1,21 +1,21 @@
-// sprawdza czy klasa "Product" jest prawidłowo zdefiniowana i synchronizowana z bazą danych
+const fs = require('fs');
+const { JSDOM } = require('jsdom');
+const { catProdRowsToArray } = require('../catProdRowsToArray');
+const { isURL } = require('validator'); // Biblioteka użyta w celu sprawdzenia poprawności URL
 
-const { Product } = require('../database/models');
+describe('Test 4', () => {
+    let products;
 
-describe('Testowanie modelu Product', () => {
-    it('powinno zwrócić prawidłowe właściwości dla nowego produktu', () => {
-        const product = Product.build({
-            name: 'Laptop',
-            price: 999.99,
-            imgURL: 'https://example.com/laptop.jpg',
-            productURL: 'https://example.com/laptop',
-            category: 'Electronics'
-        });
+    beforeEach(async () => {
+        const html = fs.readFileSync('./Tests/webstie_to_test/klawiatura.html', 'utf8'); 
+        const dom = new JSDOM(html);
+        const elements = dom.window.document.getElementsByClassName('cat-prod-row');
+        products = await catProdRowsToArray(elements);
+    });
 
-        expect(product).toHaveProperty('name', 'Laptop');
-        expect(product).toHaveProperty('price', 999.99);
-        expect(product).toHaveProperty('imgURL', 'https://example.com/laptop.jpg');
-        expect(product).toHaveProperty('productURL', 'https://example.com/laptop');
-        expect(product).toHaveProperty('category', 'Electronics');
+    it('Każdy produkt powinien mieć poprawny URL, zaczynający się od protokołu https', () => {
+        for (let i = 0; i < products.length; i++) {
+            expect(isURL(products[i].productURL, { protocols: ['https'], require_protocol: true })).toBe(true);
+        }
     });
 });

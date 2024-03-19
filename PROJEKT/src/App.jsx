@@ -18,19 +18,30 @@ function App() {
         })
         .then(response => response.json())
         .then(data => {
-            const productsWithFloatPrice = data.map(product => {
-                const priceWithoutSpaces = product.price.replace(/\s/g, '');
-                const priceWithDot = priceWithoutSpaces.replace(',', '.');
-                const parsedPrice = parseFloat(priceWithDot).toFixed(2);
+            // const productsWithFloatPrice = data.map(product => {
+            //     const priceWithoutSpaces = product.price.replace(/\s/g, '');
+            //     const priceWithDot = priceWithoutSpaces.replace(',', '.');
+            //     const parsedPrice = parseFloat(priceWithDot).toFixed(2);
+            //     return {
+            //         ...product,
+            //         price: parsedPrice
+            //     };
+            // });
+
+            const producstWithDate = data.map(product => {
+                const createdAt = new Date(product.createdAt).toLocaleDateString("pl-PL");
+                const updatedAt = new Date(product.updatedAt).toLocaleDateString("pl-PL");
                 return {
                     ...product,
-                    price: parsedPrice
+                    createdAt,
+                    updatedAt
                 };
             });
 
-            setProducts(productsWithFloatPrice);
+
+            setProducts(producstWithDate);
             console.log(data)
-            console.log(productsWithFloatPrice)
+            // console.log(productsWithFloatPrice)
         })
         .catch(error => {
             console.error('Error:', error);
