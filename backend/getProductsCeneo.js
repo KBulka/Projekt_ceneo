@@ -25,6 +25,8 @@ const getProductsCeneo = async (searchInput) => {
     }
 
     const response = await axios.get(`https://www.ceneo.pl/szukaj-${searchInput};0020-30-0-0-${searchInputFromDB.page}.htm`);
+    const redirectURL = response.request.res.responseUrl;
+    console.log(redirectURL);
     const dom = new JSDOM(response.data);
 
     const elements = dom.window.document.getElementsByClassName('cat-prod-row');
