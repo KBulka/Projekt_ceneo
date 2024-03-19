@@ -4,7 +4,7 @@
   background-color: #292929;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,9 +15,10 @@ body {
   width: 100vw;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
-#root{
+#root {
   width: clamp(500px, 55%, 1200px);
   display: flex;
   flex-direction: column;
@@ -25,144 +26,141 @@ body {
   text-align: center;
 }
 
-form{
+form {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 600px) {
     padding: 0 1rem;
   }
 
-  label{
+  label {
     font-size: 3rem;
 
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 600px) {
       font-size: 2.8rem;
     }
   }
 
-  #searchBar{
+  #searchBar {
     padding: 8px 12px;
-    font-size: 20px;
+    font-size: 32px;
     border-radius: 6px;
-    margin: 0 25%;
     text-transform: capitalize;
-/* ffa31a */
-    &:focus{
-      outline: 3px solid #ffa31a;
+
+    &:focus {
+      outline: 3px solid #ff8333;
     }
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 600px) {
       width: 100%;
+      font-size: 20px;
       margin: 0;
       padding: 8px 12px;
     }
   }
 
-  #searchBtn{
-    font-size: 20px;
+  .searchBtn {
+    font-size: 24px;
     padding: 10px 2rem;
-    margin: 0 25% 2rem 25%;
-    background-color: #ffa31a;
+    background-color: #ff8333;
     border: none;
     border-radius: 6px;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       background-color: transparent;
-      outline: 1px solid #ffa31a;
-      color: #ffa31a;
+      outline: 1px solid #ff8333;
+      color: #ff8333;
     }
-
-    @media screen and (max-width: 600px){
-      width: 100%;
-      margin: 0 0 1rem 0;
+    @media screen and (max-width: 600px) {
+      font-size: 20px;
     }
   }
 }
 
-.products{
+.products {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.product{
+.product {
   display: flex;
   color: #fff;
   text-decoration: none;
   gap: 1rem;
-  @media screen and (max-width:600px){
+  @media screen and (max-width: 600px) {
     padding: 0 1rem;
+    align-items: center;
   }
-  &:visited .productInfo h2
-  {
-    color: #ffa31a;
+  &:visited .productInfo h2 {
+    color: #ff8333;
   }
-  img{
+  img {
     min-height: 200px;
     max-height: 200px;
     min-width: 200px;
     max-width: 200px;
-    @media screen and (max-width:600px){
-      min-height: 180px;
-      max-height: 180px;
-      min-width: 180px;
-      max-width: 180px;
+    @media screen and (max-width: 600px) {
+      min-height: 160px;
+      max-height: 160px;
+      min-width: 160px;
+      max-width: 160px;
     }
   }
-  .productInfo{
+  .productInfo {
     display: flex;
     flex-direction: column;
     width: 100%;
     text-align: left;
     justify-content: space-around;
 
-    h2{
+    h2 {
       font-size: 1.2rem;
+      text-wrap: balance;
     }
-    b{
-      color: #ffa31a;
+    b {
+      color: #ff8333;
       font-size: 28px;
     }
   }
 }
 
-.sortingOptions
-{
+.sortingOptions {
   display: flex;
   gap: 1rem;
   justify-content: center;
 
-  @media screen and (max-width:600px){
+  @media screen and (max-width: 600px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 1rem;
   }
-  button{
+  button {
     width: 100%;
     padding: 1rem 8px;
     font-size: 18px;
-    background-color: #ffa31a;
+    background-color: #ff8333;
     border: none;
     border-radius: 6px;
     cursor: pointer;
 
-    @media screen and (max-width:600px){
+    @media screen and (max-width: 600px) {
       font-size: 16px;
     }
 
-    &:hover{
+    &:hover {
       background-color: transparent;
-      outline: 1px solid #ffa31a;
-      color: #ffa31a;
+      outline: 1px solid #ff8333;
+      color: #ff8333;
     }
-    &.active{
+    &.active {
       background-color: transparent;
-      outline: 1px solid #ffa31a;
-      color: #ffa31a;
+      outline: 1px solid #ff8333;
+      color: #ff8333;
     }
   }
 }
