@@ -7,6 +7,40 @@ function App() {
   const [products, setProducts] = useState([]);
   const [activeButton, setActiveButton] = useState(null);
 
+  const fetchDataCeneo = (event) => {
+    event.preventDefault();
+    fetch("http://localhost:3000/getProductsCeneo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ searchInput }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const producstWithDate = data.map((product) => {
+          const createdAt = new Date(product.createdAt).toLocaleDateString(
+            "pl-PL"
+          );
+          const updatedAt = new Date(product.updatedAt).toLocaleDateString(
+            "pl-PL"
+          );
+          return {
+            ...product,
+            createdAt,
+            updatedAt,
+          };
+        });
+
+        setProducts(producstWithDate);
+        console.log(data);
+        // console.log(productsWithFloatPrice)
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   const fetchData = (event) => {
     event.preventDefault();
     fetch("http://localhost:3000/", {
@@ -40,6 +74,8 @@ function App() {
         console.error("Error:", error);
       });
   };
+
+  console.log(products);
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -101,7 +137,7 @@ function App() {
           value="Pobierz dane z bazy danych"
         />
         <input
-          onClick={fetchData} // Tutaj do zmienienia na funcje pobierająca dane z ceneo
+          onClick={fetchDataCeneo} // Tutaj do zmienienia na funcje pobierająca dane z ceneo
           className="searchBtn"
           id="searchBtnCeneo"
           type="button"
@@ -134,7 +170,6 @@ function App() {
         >
           Cena malejąco
         </button>
-        <button>Next</button>
       </div>
 
       <ProductList products={products} />

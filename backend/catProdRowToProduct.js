@@ -13,7 +13,7 @@ function catProwRodToProduct(catProdRow, cat) {
         category = cat;
     }
     const nameElement = catProdRow.getElementsByClassName('cat-prod-row__name')[0];
-    const name = nameElement.getElementsByTagName('span')[0].classList.contains('recommended-label') ?
+    const name = nameElement.getElementsByTagName('span')[0].classList.contains('recommended-label' || 'new-label') ?
         nameElement.getElementsByTagName('span')[1].innerHTML :
         nameElement.getElementsByTagName('span')[0].innerHTML;
     return ({
